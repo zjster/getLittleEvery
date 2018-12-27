@@ -1,0 +1,21 @@
+List<Map<String, Object>> listMaps = new ArrayList<Map<String, Object>>();
+        
+        Map<String, Object> map1 = new HashMap<String, Object>();
+        map1.put("1", "1");
+        map1.put("2", "1");
+        map1.put("3", "1");
+        listMaps.add(map1);
+
+        Map<String, Object> map2 = new HashMap<String, Object>();
+        map2.put("11", "1.2323");
+        map2.put("22", "1.2323");
+        map2.put("33", "1.2323");
+        listMaps.add(map2);
+        double sum = 0;
+
+        for (Map<String, Object> map : listMaps) {
+            for (String s : map.keySet()) {
+            	sum = sum+Double.parseDouble(map.get(s).toString());
+                System.out.print(s+"------"+sum + "  ");
+            }
+        }
