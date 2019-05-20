@@ -1,2 +1,2 @@
-# getLittleEvery
-getLittleEvery
+# getLittleEveryDay
+getLittleEveryDay
