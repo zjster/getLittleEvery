@@ -1,0 +1,40 @@
+var h = $(window).height() * 0.65;
+// 省级 
+$('#province').combobox({
+    valueField: 'name', //值字段
+    textField: 'name', //显示的字段
+    url: '/TidewaySHPServer/area/findAllProvince',//url为java后台查询省级列表的方法地址
+    panelHeight: h,
+    editable: true,
+    //模糊查询
+    filter: function(q, row) {
+        var opts = $(this).combobox('options');
+        return row[opts.textField].indexOf(q) == 0; //从头匹配,改成>=即可在任意地方匹配
+    },
+    onSelect: function(rec) {
+        $('#city').combobox('setValue', "");
+        $('#county').combobox('setValue', "");
+        var url = '/TidewaySHPServer/area/findAllCity?parentId=' + rec.areaId;//url为java后台查询事级列表的方法地址
+        $('#city').combobox('reload', url);
+    }
+});
+//市区 
+$('#city').combobox({
+    valueField: 'name', //值字段
+    textField: 'name', //显示的字段              
+    panelHeight: 'auto',
+    editable: false, //不可编辑，只能选择
+    value: '',
+    onSelect: function(rec) {
+        $('#county').combobox('setValue', "");
+        var url = '/TidewaySHPServer/area/findAllDistrictOrCounty?parentId=' + rec.areaId;//url为java后台查询区县级列表的方法地址
+        $('#county').combobox('reload', url);
+    }
+});
+//区 县
+$('#county').combobox({
+    valueField: 'areaId',
+    textField: 'name',
+    panelHeight: 'auto',
+    editable: false,
+});
