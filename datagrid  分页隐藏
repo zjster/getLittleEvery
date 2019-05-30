@@ -1,0 +1,10 @@
+第一中：
+$("#quotaList").datagrid({
+			showHeader:false,
+			pagination:false
+		});
+    
+    
+第二种：
+$("#tb").datagrid("getPanel").hide();//隐藏
+$("#tb").datagrid("getPanel").show();//显示
