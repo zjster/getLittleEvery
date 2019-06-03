@@ -1,3 +1,4 @@
+自己实现：arr2[i]= new int[i+1];所含存储空间少，运行速度存疑（每次循环需要定义一个一位数组占时间，每次循环的if判断占时间），
 public class Test {
 	public static void main(String[] args) {
 		int[][] arr2= new int[8][];
@@ -23,3 +24,28 @@ public class Test {
 		}
 	}
 }
+
+
+教程：所占存储空间多，运行速度与自己实现的比较，暂时存疑（存在多次循环，多次赋值，占时间）。
+int n=8;
+int[][] arr = new int[n][n];
+		
+		for(int x=0; x<n; x++) {
+			arr[x][0] = 1;
+			arr[x][x] = 1;
+		}
+		
+		//第三行开始
+		for(int x=2; x<n; x++) {
+			//第二列开始,一定要记得减去最后一列
+			for(int y=1; y<=x-1; y++) {
+				arr[x][y] = arr[x-1][y-1]+arr[x-1][y];
+			}
+		}
+		//输出的时候，千万要和九九乘法表的输出类似。
+		for(int x=0; x<arr.length; x++) {
+			for(int y=0; y<=x; y++) {
+				System.out.print(arr[x][y]+"\t");
+			}
+			System.out.println();
+		}
